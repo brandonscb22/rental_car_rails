@@ -1,24 +1,16 @@
-# README
+# Start the application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To start the application, the gems must be installed.
 
-Things you may want to cover:
+``bundle install``
 
-* Ruby version
+Then you must load the vehicle seed
 
-* System dependencies
+``rake db:seed``
 
-* Configuration
+And then we started the project
 
-* Database creation
+``rails s``
 
-* Database initialization
+Example of how the application would look like:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
