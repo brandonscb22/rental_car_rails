@@ -6,19 +6,6 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.includes(:vehicle).where(user_id: current_user.id, active: true)
   end
 
-  # GET /reservations/1 or /reservations/1.json
-  def show
-  end
-
-  # GET /reservations/new
-  def new
-    @reservation = Reservation.new
-  end
-
-  # GET /reservations/1/edit
-  def edit
-  end
-
   # POST /reservations or /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
@@ -44,16 +31,6 @@ class ReservationsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /reservations/1 or /reservations/1.json
-  def destroy
-    @reservation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to reservations_url, notice: "Reservation was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

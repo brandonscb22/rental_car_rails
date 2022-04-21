@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :set_vehicle, only: %i[ show destroy ]
+  before_action :set_vehicle, only: %i[ show ]
   layout "home", only: [:index, :show]
 
   # GET /vehicles or /vehicles.json
@@ -12,21 +12,6 @@ class VehiclesController < ApplicationController
 
   # GET /vehicles/1 or /vehicles/1.json
   def show
-  end
-
-  # POST /vehicles or /vehicles.json
-  def create
-    @vehicle = Vehicle.new(vehicle_params)
-
-    respond_to do |format|
-      if @vehicle.save
-        format.html { redirect_to vehicle_url(@vehicle), notice: "Vehicle was successfully created." }
-        format.json { render :show, status: :created, location: @vehicle }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @vehicle.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   private
