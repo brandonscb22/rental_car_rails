@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p class="m-2 p-2"></p>
+    </div>
+    <div class="col-12">
+      <p style="color: green"><%= notice %></p>
+      <main>
+        <div class="album py-5">
+          <div class="container">
+            <h1 class="text-center">Reservations</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="vehicles">
+              <% @reservations.each do |reservation| %>
+                <%= render reservation %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="qualificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Service Qualification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_with url: "/reservations/", method: :put, local: true, id: "form_reservation" do %>
+        <input type="hidden" name="reservation[qualification]" id="qualification" value="">
+        <input type="hidden" name="reservation[active]" value="false">
+        <div class="modal-body text-center">
+          <i class="bi bi-star" id="star1"></i>
+          <i class="bi bi-star" id="star2"></i>
+          <i class="bi bi-star" id="star3"></i>
+          <i class="bi bi-star" id="star4"></i>
+          <i class="bi bi-star" id="star5"></i>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <%= submit_tag("Finish",class: 'btn btn-primary') %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    function changeReservation(id_value){
+        let id = id_value;
+        document.getElementById("form_reservation").action = "/reservations/"+id;
+        const star1 = document.querySelector("#star1");
+        const star2 = document.querySelector("#star2");
+        const star3 = document.querySelector("#star3");
+        const star4 = document.querySelector("#star4");
+        const star5 = document.querySelector("#star5");
+
+        star1.addEventListener("click", (event) => {
+            event.preventDefault();
+            id = 1;
+            star1.classList.remove("bi-star");
+            star1.classList.add("bi-star-fill");
+            star2.classList.remove("bi-star-fill");
+            star2.classList.add("bi-star");
+            star3.classList.remove("bi-star-fill");
+            star3.classList.add("bi-star");
+            star4.classList.remove("bi-star-fill");
+            star4.classList.add("bi-star");
+            star5.classList.remove("bi-star-fill");
+            star5.classList.add("bi-star");
+            document.querySelector("#qualification").value = 1;
+        });
+        star2.addEventListener("click", (event) => {
+            event.preventDefault();
+            id = 2;
+            star1.classList.remove("bi-star");
+            star1.classList.add("bi-star-fill");
+            star2.classList.remove("bi-star");
+            star2.classList.add("bi-star-fill");
+            star3.classList.remove("bi-star-fill");
+            star3.classList.add("bi-star");
+            star4.classList.remove("bi-star-fill");
+            star4.classList.add("bi-star");
+            star5.classList.remove("bi-star-fill");
+            star5.classList.add("bi-star");
+            document.querySelector("#qualification").value = 2;
+        });
+        star3.addEventListener("click", (event) => {
+            event.preventDefault();
+            id = 3;
+            star1.classList.remove("bi-star");
+            star1.classList.add("bi-star-fill");
+            star2.classList.remove("bi-star");
+            star2.classList.add("bi-star-fill");
+            star3.classList.remove("bi-star");
+            star3.classList.add("bi-star-fill");
+            star4.classList.remove("bi-star-fill");
+            star4.classList.add("bi-star");
+            star5.classList.remove("bi-star-fill");
+            star5.classList.add("bi-star");
+            document.querySelector("#qualification").value = 3;
+        });
+        star4.addEventListener("click", (event) => {
+            event.preventDefault();
+            id = 4;
+            star1.classList.remove("bi-star");
+            star1.classList.add("bi-star-fill");
+            star2.classList.remove("bi-star");
+            star2.classList.add("bi-star-fill");
+            star3.classList.remove("bi-star");
+            star3.classList.add("bi-star-fill");
+            star4.classList.remove("bi-star");
+            star4.classList.add("bi-star-fill");
+            star5.classList.remove("bi-star-fill");
+            star5.classList.add("bi-star");
+            document.querySelector("#qualification").value = 4;
+        });
+        star5.addEventListener("click", (event) => {
+            event.preventDefault();
+            id = 5;
+            star1.classList.remove("bi-star");
+            star1.classList.add("bi-star-fill");
+            star2.classList.remove("bi-star");
+            star2.classList.add("bi-star-fill");
+            star3.classList.remove("bi-star");
+            star3.classList.add("bi-star-fill");
+            star4.classList.remove("bi-star");
+            star4.classList.add("bi-star-fill");
+            star5.classList.remove("bi-star");
+            star5.classList.add("bi-star-fill");
+            document.querySelector("#qualification").value = 5;
+        });
+    }
+</script>

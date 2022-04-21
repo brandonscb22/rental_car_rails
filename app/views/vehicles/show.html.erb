@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p class="m-4 p-4"></p>
+    </div>
+    <% if notice %>
+    <div class="col-12">
+      <div class="alert alert-info" role="alert">
+        <%= notice %>
+      </div>
+    </div>
+    <% end %>
+    <div class="col-12 col-md-6">
+      <img src="<%= @vehicle.image %>" class="img-fluid rounded" alt="">
+    </div>
+    <div class="col-12 col-md-6">
+      <h1><%= @vehicle.name %></h1>
+      <p><%= @vehicle.description %></p>
+      <p class="text-end fs-5 fw-lighter m-0"><span class="fw-bold fs-3">$<%= @vehicle.value_per_hour %></span>USD/H</p>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Rent</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reserve Car</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= form_with url: reservations_path, method: :post, local: true do %>
+        <div class="modal-body">
+          <% if current_user %>
+            Hours
+            <input type="hidden" name="reservation[user_id]" value="<%= current_user.id %>">
+            <input type="hidden" name="reservation[vehicle_id]" value="<%= @vehicle.id %>">
+            <input type="hidden" name="reservation[active]" value="true">
+            <input type="hidden" name="reservation[total_price]" id="total_price" value="<%= @vehicle.value_per_hour %>">
+            <input type="number" name="reservation[hours_reservation]" id="hours" value="1">
+            <p class="text-end fs-5 fw-lighter m-0"><span class="fw-bold fs-3">$<%= @vehicle.value_per_hour %></span>USD/H</p>
+            <hr>
+            <h2>Total</h2>
+            <p class="text-end fs-5 fw-lighter m-0"><span class="fw-bold fs-3" id="total">$<%= @vehicle.value_per_hour %></span>USD</p>
+          <% else %>
+            You must log in
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <% if current_user %>
+            <%= submit_tag("Reserve",class: 'btn btn-primary') %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    document.querySelector("#hours").addEventListener("change", (event) => {
+        let price = <%= @vehicle.value_per_hour %>;
+        event.preventDefault();
+        console.log(document.querySelector("#hours"))
+        document.querySelector("#total_price").value = parseFloat(parseFloat(document.querySelector("#hours").value ? document.querySelector("#hours").value: 0) * price);
+        document.querySelector("#total").innerHTML = '$' + parseFloat(parseFloat(document.querySelector("#hours").value ? document.querySelector("#hours").value: 0) * price);
+    });
+</script>
+
+<!--<div>
+  <%#= link_to "Edit this vehicle", edit_vehicle_path(@vehicle) %> |
+  <%#= link_to "Back to vehicles", vehicles_path %>
+
+  <%#= button_to "Destroy this vehicle", @vehicle, method: :delete %>
+</div>-->

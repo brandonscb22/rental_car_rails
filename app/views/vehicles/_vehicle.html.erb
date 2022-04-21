@@ -1,0 +1,11 @@
+<div class="col" id="<%= dom_id vehicle %>">
+  <%= link_to(vehicle, class: "text-decoration-none text-black") do %>
+    <div class="card shadow-sm">
+      <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<%= vehicle.image %>" alt="">
+      <div class="card-body">
+        <h4><%= vehicle.name %> <span class="badge bg-secondary"><%= vehicle.model %></span></h4>
+        <p class="text-end fs-5 fw-lighter m-0"><span class="fw-bold fs-3">$<%= vehicle.value_per_hour %></span>USD/H</p>
+      </div>
+    </div>
+  <% end %>
+</div>

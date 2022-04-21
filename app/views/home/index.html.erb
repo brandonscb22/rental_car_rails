@@ -1,0 +1,71 @@
+<style>
+    /*
+   * Globals
+   */
+
+
+    /* Custom default button */
+    .btn-secondary,
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+        color: #333;
+        text-shadow: none; /* Prevent inheritance from `body` */
+    }
+
+
+    /*
+     * Base structure
+     */
+
+
+
+    /*
+     * Header
+     */
+
+    .nav-masthead .nav-link {
+        padding: .25rem 0;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.5);
+        background-color: transparent;
+        border-bottom: .25rem solid transparent;
+    }
+
+    .nav-masthead .nav-link:hover,
+    .nav-masthead .nav-link:focus {
+        border-bottom-color: rgba(255, 255, 255, .25);
+    }
+
+    .nav-masthead .nav-link + .nav-link {
+        margin-left: 1rem;
+    }
+
+    .nav-masthead .active {
+        color: #fff;
+        border-bottom-color: #fff;
+    }
+    header {
+        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+    }
+    .text-header {
+        text-shadow: 0 .03rem .1rem rgba(0, 0, 0, .5);
+    }
+</style>
+<% if notice %>
+<div class="alert alert-info" role="alert" id="notice">
+  <%= notice %>
+</div>
+<% end %>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<%= image_path('home.jpg') %>" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block position-absolute top-50 start-50 translate-middle">
+        <h1 class="text-header">Car Hire – Search, Compare & Save</h1>
+        <p class="lead">
+          <%= link_to "View vehicles", vehicles_path , class: "btn btn-primary btn-lg fw-bold"  %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

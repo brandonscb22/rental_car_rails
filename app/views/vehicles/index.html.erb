@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p class="m-2 p-2"></p>
+    </div>
+    <div class="col-12">
+      <p style="color: green"><%= notice %></p>
+      <main>
+        <div class="album py-5">
+          <div class="container">
+            <h1 class="text-center">Vehicles</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="vehicles">
+              <% @vehicles.each do |vehicle| %>
+                <%= render vehicle %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
